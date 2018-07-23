@@ -5,8 +5,8 @@ https://github.com/iovisor/bcc/issues/1803
 
 ```
 apt-get install python-pyelftools python-jinja2
-cd /tmp/
-git clone x minimal
+git clone https://github.com/kroemeke/bcc_dwarf_poc.git /tmp/minimal
+cd /tmp/minimal
 gcc -g3 -o minimal minimal.c
 ```
 
@@ -34,10 +34,10 @@ Searching for compile unit minimal.c in file /tmp/minimal/minimal struct dupa_s 
 
 int trace_a(struct pt_regs *ctx) {
  int c=0;
-  bpf_probe_read(&c, sizeof(c), (void *)PT_REGS_PARM1(ctx)+100);
-   bpf_trace_printk("%s %d\n", (void *)PT_REGS_PARM1(ctx)+8, c);
-    return 0;
-    }
+ bpf_probe_read(&c, sizeof(c), (void *)PT_REGS_PARM1(ctx)+100);
+ bpf_trace_printk("%s %d\n", (void *)PT_REGS_PARM1(ctx)+8, c);
+ return 0;
+}
     TEST nr :  0
     TEST nr :  1
     TEST nr :  2
